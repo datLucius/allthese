@@ -1,0 +1,29 @@
+.bg-zer-blue {
+  background-color: #185a95;
+}
+
+.bg-zer-off-white {
+  background-color: #f8f8f8;
+}
+
+.bg-zer-light-blue {
+  background-color: #5b9bd4;
+}
+
+.bg-zer-gray {
+  background-color: #d2deee;
+}
+
+.logo-zer {
+  background: url('../img/zeriscope_icon.png') no-repeat center center;
+  height: 30px;
+  width: 30px;
+}
+
+.header-row {
+  background-color: #d2deee;
+  line-height: 2rem;
+}
+.header-row:nth-child(odd) {
+  background-color: #eaeef7;
+}

@@ -1,0 +1,15 @@
+{
+  "name": "zeriscope-query-dashboard",
+  "scripts": {
+  },
+  "env": {
+  },
+  "formation": {
+  },
+  "addons": [
+
+  ],
+  "buildpacks": [
+
+  ]
+}
