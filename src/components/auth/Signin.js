@@ -25,7 +25,9 @@ class Signin extends Component {
     return (
       <div>
         <WhiteCard>
-          <div className="tc black mb4 f2 mt2">Sign In.</div>
+          <div className="tc black mb4 f2 mt2 pl5 pr5">
+            <img src="../public/img/zeriscope_logo.png" className="w-100" alt="logo" />
+          </div>
           <form onSubmit={handleSubmit(this.handleFormSubmit)}>
             <ZerInput
               name="username"
@@ -46,14 +48,6 @@ class Signin extends Component {
               </div>
             </Card>
           </form>
-          <div className="mt4 db">
-            <Card>
-              <Link to="/signup" className="black">Create an account here.</Link>
-            </Card>
-            <Card>
-              <Link to="/forgot" className="black">Forgot your password?</Link>
-            </Card>
-          </div>
         </WhiteCard>
       </div>
     );

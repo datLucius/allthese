@@ -22,7 +22,7 @@ class SearchView extends Component {
   }
 
   render() {
-    const { handleSubmit, errorMessage } = this.props;
+    const { handleSubmit } = this.props;
     return (
       <div>
         <CenterCard>
@@ -41,9 +41,9 @@ class SearchView extends Component {
                 </HalfGrid>
                 <HalfGrid>
                   <ZerInput
-                    name="date"
-                    type="text"
-                    label="Session Date"
+                    name="sessionDate"
+                    type="date"
+                    label="Subject Date"
                   />
                 </HalfGrid>
                 <Card>
@@ -74,7 +74,13 @@ function validate(values) {
   return errors;
 }
 
+function mapStateToProps(state) {
+  return {
+    startDate: state.queryReducer.startDate
+  };
+}
+
 export default reduxForm({
   form: 'query',
   validate
-})(connect(null, { queryDB })(SearchView));
+})(connect(mapStateToProps, { queryDB })(SearchView));

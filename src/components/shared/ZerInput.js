@@ -1,5 +1,7 @@
 import { Field } from "redux-form";
 import React, { Component } from "react";
+import DatePicker from 'react-datepicker';
+import moment from 'moment';
 
 import Card from "./Card";
 
@@ -81,6 +83,13 @@ const renderCheckboxInput = (field) => {
   );
 };
 
+const renderDatePicker = ({ input, placeholder, defaultValue, meta: { touched, error } }) => (
+  <div>
+    <DatePicker {...input} dateForm="MM/DD/YYYY" selected={input.value ? moment(input.value) : null} className="focus-bottom-border no-focus mb2 w-100 dark-gray f3 bg-transparent" />
+    {touched && error && <span>{error}</span>}
+  </div>
+);
+
 class ZerInput extends Component {
   handleChange() {
     this.setState({});
@@ -152,6 +161,19 @@ class ZerInput extends Component {
               type={type}
               component={renderCheckboxInput}
             />
+          </Card>
+        </div>
+      );
+    } else if (type === "date") {
+      return (
+        <div className="w-100 input-height">
+          <Card>
+            <Field
+              name={name}
+              type={type}
+              component={renderDatePicker}
+            />
+            <label htmlFor={name} className="ttu mid-gray f6">{label}</label>
           </Card>
         </div>
       );

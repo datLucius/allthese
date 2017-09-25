@@ -22,6 +22,7 @@
     "moment": "^2.18.1",
     "radium": "^0.19.1",
     "react": "^0.14.3",
+    "react-datepicker": "^0.55.0",
     "react-dom": "^0.14.3",
     "react-redux": "4.3.0",
     "react-router": "^2.0.1",
