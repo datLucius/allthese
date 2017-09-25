@@ -1,3 +1,4 @@
+import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
 
@@ -14,7 +15,10 @@ class Header extends Component {
         </HalfGrid>
         <HalfGrid>
           <div className="tc">
-            Sign {this.props.loggedIn ? 'out' : 'in'}
+            {this.props.loggedIn &&
+            <Link className="tc pointer link" to="/signout">
+              Sign out
+            </Link>}
           </div>
         </HalfGrid>
       </div>

@@ -67,6 +67,20 @@ const renderTelInput = (field) => {
   );
 };
 
+const renderCheckboxInput = (field) => {
+  const { input, type, meta: { touched, error } } = field;
+  return (
+    <div>
+      <input
+        {...input}
+        type={type}
+        className="focus-bottom-border no-focus mb2 w-100 dark-gray f3 bg-transparent"
+      />
+      { touched && error && <div className="orange">{error}</div> }
+    </div>
+  );
+};
+
 class ZerInput extends Component {
   handleChange() {
     this.setState({});
@@ -126,6 +140,18 @@ class ZerInput extends Component {
               component={renderTelInput}
             />
             <label htmlFor={name} className="ttu mid-gray f6">{label}</label>
+          </Card>
+        </div>
+      );
+    } else if (type === "checkbox") {
+      return (
+        <div className="w-100 input-height">
+          <Card>
+            <Field
+              name={name}
+              type={type}
+              component={renderCheckboxInput}
+            />
           </Card>
         </div>
       );

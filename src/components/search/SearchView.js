@@ -5,6 +5,7 @@ import { reduxForm } from 'redux-form';
 import { queryDB } from '../../actions';
 
 import CenterCard from '../shared/CenterCard';
+import WhiteCard from '../shared/WhiteCard';
 import HalfGrid from '../shared/HalfGrid';
 import ZerInput from '../shared/ZerInput';
 import Card from '../shared/Card';
@@ -25,34 +26,36 @@ class SearchView extends Component {
     return (
       <div>
         <CenterCard>
-          <div className="tc">
+          <div className="tc f3">
             Provide Subject ID and/or Session Date To Retrieve Requested Session Data
           </div>
-          <div className="flex">
-            <form onSubmit={handleSubmit(this.handleFormSubmit)}>
-              <HalfGrid>
-                <ZerInput
-                  name="id"
-                  type="text"
-                  label="Subject ID"
-                />
-              </HalfGrid>
-              <HalfGrid>
-                <ZerInput
-                  name="date"
-                  type="text"
-                  label="Session Date"
-                />
-              </HalfGrid>
-              <Card>
-                <div className="w-100 pa2 flex">
-                  <div className="ml-auto">
-                    <ZerButton action="submit">Search</ZerButton>
+          <WhiteCard>
+            <div className="flex">
+              <form onSubmit={handleSubmit(this.handleFormSubmit)}>
+                <HalfGrid>
+                  <ZerInput
+                    name="id"
+                    type="text"
+                    label="Subject ID"
+                  />
+                </HalfGrid>
+                <HalfGrid>
+                  <ZerInput
+                    name="date"
+                    type="text"
+                    label="Session Date"
+                  />
+                </HalfGrid>
+                <Card>
+                  <div className="w-100 pa2 flex">
+                    <div className="ml-auto">
+                      <ZerButton action="submit">Search</ZerButton>
+                    </div>
                   </div>
-                </div>
-              </Card>
-            </form>
-          </div>
+                </Card>
+              </form>
+            </div>
+          </WhiteCard>
         </CenterCard>
       </div>
     );

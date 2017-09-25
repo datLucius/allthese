@@ -6,3 +6,6 @@ export const GOT_ACCOUNT = 'got_account';
 
 // query
 export const GOT_RESULTS = 'got_results';
+
+// csv
+export const TOGGLE_RESULT = 'toggle_results';

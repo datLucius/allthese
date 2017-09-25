@@ -7,10 +7,10 @@ import ZerButton from '../shared/ZerButton';
 
 import ResultRow from './ResultRow';
 
-const ResultsView = () => (
+const ResultsView = ({ results }) => (
   <div>
     <CenterCard>
-      <div className="tc">
+      <div className="tc f3">
         Requested Information Is Listed Below
       </div>
       <div className="mt4">
@@ -23,10 +23,15 @@ const ResultsView = () => (
           <div className="w-20 bg-zer-light-blue white b--white bw1 ba tc flex flex-column justify-center br-0">Sensor Data</div>
           <div className="w-10 bg-zer-light-blue white b--white bw1 ba tc flex flex-column justify-center">Select Session</div>
         </div>
-        <ResultRow result="{}" />
-        <ResultRow result="{}" />
+        <div>
+          {results.map(result => (
+            <div>
+              <ResultRow myResult={result} key={result.id} />
+            </div>
+          ))}
+        </div>
       </div>
-      <div className="tc mt4">
+      <div className="tc mt4 f4">
         Select the Specific Session To Be Exported To .CSV File For Analysis And Click Below
       </div>
     </CenterCard>
@@ -42,7 +47,7 @@ const ResultsView = () => (
 
 function mapStateToProps(state) {
   return {
-    sessions: state.queryReducer.results
+    results: state.queryReducer.results
   };
 }
 export default connect(mapStateToProps)(ResultsView);
