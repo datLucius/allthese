@@ -8,7 +8,6 @@ import reduxThunk from 'redux-thunk';
 import reducers from './reducers';
 
 import App from './components/app';
-import Home from './components/home';
 import Signin from './components/auth/Signin';
 import Search from './components/search/SearchView';
 import Results from './components/results/ResultsView';
@@ -24,7 +23,7 @@ ReactDOM.render(
       <Route path="/" component={App}>
         <IndexRoute component={Signin} />
         <Route path="search" component={Search} />
-        <Route path="results" component={Results} />
+        <Route path="results/:subject_id/:date" component={Results} />
       </Route>
     </Router>
   </Provider>

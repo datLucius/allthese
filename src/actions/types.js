@@ -14,3 +14,4 @@ export const TOGGLE_RESULT = 'toggle_results';
 //  loading
 export const LOAD_START = 'load_start';
 export const LOAD_END = 'load_end';
+export const LOAD_ERROR = 'load_error';

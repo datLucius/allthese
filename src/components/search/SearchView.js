@@ -1,8 +1,9 @@
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
 import { reduxForm } from 'redux-form';
+import moment from 'moment';
 
-import { queryDB } from '../../actions';
+import { getResults } from '../../actions';
 
 import CenterCard from '../shared/CenterCard';
 import WhiteCard from '../shared/WhiteCard';
@@ -17,8 +18,11 @@ class SearchView extends Component {
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
   }
 
-  handleFormSubmit({ id, date }) {
-    this.props.signinUser(id, date);
+  handleFormSubmit({ id, sessionDate }) {
+    if (sessionDate) {
+      sessionDate = new Date(sessionDate).toISOString();
+    }
+    this.props.getResults(id, sessionDate);
   }
 
   render() {
@@ -83,4 +87,4 @@ function mapStateToProps(state) {
 export default reduxForm({
   form: 'query',
   validate
-})(connect(mapStateToProps, { queryDB })(SearchView));
+})(connect(mapStateToProps, { getResults })(SearchView));

@@ -1,3 +1,4 @@
+import { browserHistory } from 'react-router';
 import axios from 'axios';
 
 import {
@@ -5,36 +6,44 @@ import {
   GOT_SESSION,
   TOGGLE_RESULT,
   LOAD_START,
-  LOAD_END
+  LOAD_END,
+  LOAD_ERROR
 } from './types';
 
 const API_URL = 'https://zeriscope-web-army.herokuapp.com/api';
 
-function getThis(route) {
-  return axios({
+function getThis(route, query) {
+  const getObject = {
     method: 'get',
-    url: `${API_URL}${route}`
-  });
+    url: `${API_URL}${route}`,
+    params: {
+      subject_id: query.subject_id,
+      date: query.date
+    }
+  };
+  return axios(getObject);
 }
 
-
-export function getAllSessions() {
+export function getSessionsByParams(params) {
   return (dispatch) => {
     dispatch({
       type: LOAD_START
     });
-    getThis('/sessions')
+    getThis('/sessions', params)
       .then((res) => {
         dispatch({
           type: GOT_ALL_SESSIONS,
-          payload: res.payload
+          payload: res.data.data
         });
         dispatch({
           type: LOAD_END
         });
       })
       .catch((err) => {
-        console.log('err', err);
+        dispatch({
+          type: LOAD_ERROR,
+          payload: err.data
+        });
         dispatch({
           type: LOAD_END
         });
@@ -59,6 +68,15 @@ export function toggleResult(id) {
     dispatch({
       type: TOGGLE_RESULT,
       payload: id
+    });
+  };
+}
+
+export function getResults(subjectId, date) {
+  return (dispatch) => {
+    browserHistory.push(`/results/${subjectId}/${date}`);
+    dispatch({
+      type: 'GO_RESULTS'
     });
   };
 }

@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import moment from 'moment';
 import _ from 'underscore';
 
-import { getAllSessions } from '../../actions';
+import { getSessionsByParams } from '../../actions';
 import CenterCard from '../shared/CenterCard';
 import Card from '../shared/Card';
 import Loader from '../shared/Loader';
@@ -17,14 +17,14 @@ class ResultsView extends Component {
   }
 
   componentDidMount() {
-    this.props.getAllSessions();
+    this.props.getSessionsByParams(this.props.params);
   }
 
   handleClick() {
     const csvResults = [];
     _.forEach(this.props.sessionArray, (session) => {
       _.forEach(this.props.sessions, (result) => {
-        if (result.sessionId === session) {
+        if (result.session_id === session) {
           csvResults.push(result);
         }
       });
@@ -64,9 +64,9 @@ class ResultsView extends Component {
                   <div className="w-10 bg-zer-light-blue white b--white bw1 ba tc flex flex-column justify-center">Select Session</div>
                 </div>
                 <div>
-                  {sessions.map(result => (
-                    <div className="header-row">
-                      <ResultRow myResult={result} key={result.id} />
+                  {sessions && sessions.map(result => (
+                    <div className="header-row" key={result.subject_id}>
+                      <ResultRow myResult={result} />
                     </div>
                   ))}
                 </div>
@@ -97,5 +97,5 @@ function mapStateToProps(state) {
   };
 }
 export default connect(mapStateToProps, {
-  getAllSessions
+  getSessionsByParams
 })(ResultsView);
