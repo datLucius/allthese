@@ -1,4 +1,3 @@
-import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
 
@@ -25,7 +24,7 @@ class Header extends Component {
           </div>
         </HalfGrid>
         <HalfGrid>
-          {this.props.loggedIn && <div className="tc pointer" onClick={() => this.handleSignOutClick()} role="button">
+          {this.props.authenticated && <div className="tc pointer" onClick={() => this.handleSignOutClick()} role="button">
             Sign Out
           </div>}
         </HalfGrid>
@@ -36,7 +35,7 @@ class Header extends Component {
 
 function mapStateToProps(state) {
   return {
-    loggedIn: state.authReducer.loggedIn
+    authenticated: state.authReducer.authenticated
   };
 }
 export default connect(mapStateToProps, {

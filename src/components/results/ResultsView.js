@@ -55,17 +55,16 @@ class ResultsView extends Component {
               </div>
               <div className="mt4">
                 <div className="header-row w-100 flex">
-                  <div className="w-20 bg-zer-light-blue white b--white bw1 ba tc flex flex-column justify-center br-0">Session Id</div>
+                  <div className="w-40 bg-zer-light-blue white b--white bw1 ba tc flex flex-column justify-center br-0">Session Id</div>
                   <div className="w-10 bg-zer-light-blue white b--white bw1 ba tc flex flex-column justify-center br-0">Subject Id</div>
                   <div className="w-10 bg-zer-light-blue white b--white bw1 ba tc flex flex-column justify-center br-0">Session Date</div>
-                  <div className="w-20 bg-zer-light-blue white b--white bw1 ba tc flex flex-column justify-center br-0">Session Time</div>
-                  <div className="w-10 bg-zer-light-blue white b--white bw1 ba tc flex flex-column justify-center br-0">Device Address</div>
-                  <div className="w-20 bg-zer-light-blue white b--white bw1 ba tc flex flex-column justify-center br-0">Device Description</div>
+                  <div className="w-10 bg-zer-light-blue white b--white bw1 ba tc flex flex-column justify-center br-0">Session Time</div>
+                  <div className="w-20 bg-zer-light-blue white b--white bw1 ba tc flex flex-column justify-center br-0">Device Address</div>
                   <div className="w-10 bg-zer-light-blue white b--white bw1 ba tc flex flex-column justify-center">Select Session</div>
                 </div>
                 <div>
                   {sessions && sessions.map(result => (
-                    <div className="header-row" key={result.subject_id}>
+                    <div className="header-row" key={result._id}>
                       <ResultRow myResult={result} />
                     </div>
                   ))}

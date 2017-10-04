@@ -11,6 +11,7 @@ import App from './components/app';
 import Signin from './components/auth/Signin';
 import Search from './components/search/SearchView';
 import Results from './components/results/ResultsView';
+import RequireAuth from './components/auth/RequireAuth';
 
 const createStoreWithMiddleware = applyMiddleware(
   reduxThunk
@@ -22,8 +23,8 @@ ReactDOM.render(
     <Router history={browserHistory}>
       <Route path="/" component={App}>
         <IndexRoute component={Signin} />
-        <Route path="search" component={Search} />
-        <Route path="results/:subject_id/:date" component={Results} />
+        <Route path="search" component={RequireAuth(Search)} />
+        <Route path="results/:subject_id/:date" component={RequireAuth(Results)} />
       </Route>
     </Router>
   </Provider>

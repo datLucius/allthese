@@ -2,20 +2,19 @@ import { browserHistory } from 'react-router';
 import axios from 'axios';
 
 import {
+  AUTH_USER,
   UNAUTH_USER,
   LOAD_START,
   LOAD_END,
-  LOAD_ERROR,
-  GOT_USER
+  LOAD_ERROR
 } from './types';
-
-const API_URL = 'https://zeriscope-web-army.herokuapp.com/api';
 
 export function logOutUser() {
   return (dispatch) => {
     dispatch({
       type: UNAUTH_USER
     });
+    localStorage.removeItem('user');
     browserHistory.push('/');
   };
 }
@@ -23,7 +22,7 @@ export function logOutUser() {
 function getUser(username, password) {
   return axios({
     method: 'get',
-    url: `${API_URL}/user/${username}/${password}`
+    url: `${process.env.API_URL}/user/${username}/${password}`
   });
 }
 
@@ -34,9 +33,8 @@ export function signinUser(username, password) {
     });
     getUser(username, password)
       .then((res) => {
-        console.log('res', res);
         dispatch({
-          type: GOT_USER,
+          type: AUTH_USER,
           payload: res.data
         });
         dispatch({
@@ -55,4 +53,16 @@ export function signinUser(username, password) {
         });
       });
   };
+}
+
+export function checkForUser() {
+  return dispatch => new Promise((resolve) => {
+    if (localStorage.getItem('user')) {
+      dispatch({
+        type: AUTH_USER,
+        payload: JSON.parse(localStorage.getItem('user'))
+      });
+      resolve(localStorage.getItem('user'));
+    }
+  });
 }

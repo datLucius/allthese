@@ -10,12 +10,10 @@ import {
   LOAD_ERROR
 } from './types';
 
-const API_URL = 'https://zeriscope-web-army.herokuapp.com/api';
-
 function getThis(route, query) {
   const getObject = {
     method: 'get',
-    url: `${API_URL}${route}`,
+    url: `${process.env.API_URL}${route}`,
     params: {
       subject_id: query.subject_id,
       date: query.date
@@ -72,11 +70,11 @@ export function toggleResult(id) {
   };
 }
 
-export function getResults(subjectId, date) {
+export function getResults(id, sessionDate) {
   return (dispatch) => {
-    browserHistory.push(`/results/${subjectId}/${date}`);
+    browserHistory.push(`/results/${id}/${sessionDate}`);
     dispatch({
-      type: 'GO_RESULTS'
+      type: 'get_results'
     });
   };
 }
