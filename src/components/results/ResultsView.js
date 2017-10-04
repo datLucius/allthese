@@ -1,9 +1,7 @@
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
-import moment from 'moment';
-import _ from 'underscore';
 
-import { getSessionsByParams } from '../../actions';
+import { getSessionsByParams, buildCSV } from '../../actions';
 import CenterCard from '../shared/CenterCard';
 import Card from '../shared/Card';
 import Loader from '../shared/Loader';
@@ -21,25 +19,7 @@ class ResultsView extends Component {
   }
 
   handleClick() {
-    const csvResults = [];
-    _.forEach(this.props.sessionArray, (session) => {
-      _.forEach(this.props.sessions, (result) => {
-        if (result.session_id === session) {
-          csvResults.push(result);
-        }
-      });
-    });
-    const data = csvResults.map((session) => {
-      const rObj = [`sessionID: ${session.session_id}`, `subjectID: ${session.subject_id}`, `created_at: ${moment(session.created_at).format('MM/DD/YYYY')}`, `sessionTime: ${moment(session.sessionTime).format('MM/DD/YYYY')}`, `device_address: ${session.device_adress}`, `device_description: ${session.device_description}`];
-      return rObj;
-    });
-    let csvContent = "data:text/csv;charset=utf-8,";
-    data.forEach((infoArray, index) => {
-      const dataString = infoArray.join(", ");
-      csvContent += index < data.length ? `${dataString}\n` : dataString;
-    });
-    const encodedUri = encodeURI(csvContent);
-    window.open(encodedUri);
+    this.props.buildCSV(this.props.sessionArray);
   }
 
   render() {
@@ -96,5 +76,6 @@ function mapStateToProps(state) {
   };
 }
 export default connect(mapStateToProps, {
-  getSessionsByParams
+  getSessionsByParams,
+  buildCSV
 })(ResultsView);

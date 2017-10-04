@@ -1,5 +1,7 @@
 import { browserHistory } from 'react-router';
 import axios from 'axios';
+import _ from 'underscore';
+import moment from 'moment';
 
 import {
   GOT_ALL_SESSIONS,
@@ -50,15 +52,10 @@ export function getSessionsByParams(params) {
 }
 
 export function getSession(id) {
-  return (dispatch) => {
-    getThis(`/sessions/${id}`)
-      .then((res) => {
-        dispatch({
-          type: GOT_SESSION,
-          payload: res.payload
-        });
-      });
-  };
+  return axios({
+    method: 'get',
+    url: `${process.env.API_URL}/session/${id}`,
+  });
 }
 
 export function toggleResult(id) {
@@ -76,5 +73,56 @@ export function getResults(id, sessionDate) {
     dispatch({
       type: 'get_results'
     });
+  };
+}
+
+function getAllSelectedSessions(sessionArray) {
+  return new Promise((resolve) => {
+    const csvResults = [];
+    _.forEach(sessionArray, (session) => {
+      getSession(session)
+        .then((res) => {
+          csvResults.push(res.data);
+        });
+    });
+    resolve(csvResults);
+  });
+}
+
+function formatSessionObjects(sessions) {
+  return new Promise((resolve) => {
+    const data = sessions.map((session) => {
+      const rObj = [`sessionID: ${session.session_id}`, `subjectID: ${session.subject_id}`, `created_at: ${moment(session.created_at).format('MM/DD/YYYY')}`, `sessionTime: ${moment(session.sessionTime).format('MM/DD/YYYY')}`, `device_address: ${session.device_adress}`, `device_description: ${session.device_description}`];
+      return rObj;
+    });
+    resolve(data);
+  });
+}
+
+function buildCSVString(data) {
+  return new Promise((resolve) => {
+    let csvContent = "data:text/csv;charset=utf-8,";
+    _.each(data, (infoArray, index) => {
+      const dataString = infoArray.join(", ");
+      csvContent += index < data.length ? `${dataString}\n` : dataString;
+    });
+    resolve(encodeURI(csvContent));
+  });
+}
+
+export function buildCSV(sessionArray) {
+  return (dispatch) => {
+    dispatch({ type: LOAD_START });
+    getAllSelectedSessions(sessionArray)
+      .then((sessions) => {
+        formatSessionObjects(sessions)
+          .then((formattedSessions) => {
+            buildCSVString(formattedSessions)
+              .then((csvContent) => {
+                dispatch({ type: LOAD_END });
+                window.open(csvContent);
+              });
+          });
+      });
   };
 }

@@ -11,7 +11,7 @@ class ResultRow extends Component {
   }
 
   handleClick() {
-    this.props.toggleResult(this.props.myResult.session_id);
+    this.props.toggleResult(this.props.myResult._id);
   }
 
   render() {
