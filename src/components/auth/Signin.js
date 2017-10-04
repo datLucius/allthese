@@ -1,4 +1,3 @@
-import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
 import React, { Component } from 'react';
@@ -9,6 +8,7 @@ import renderAlert from '../shared/renderAlert';
 import Button from '../shared/ZerButton';
 import Card from '../shared/Card';
 import WhiteCard from '../shared/WhiteCard';
+import Loader from '../shared/Loader';
 
 class Signin extends Component {
   constructor(props) {
@@ -21,33 +21,36 @@ class Signin extends Component {
   }
 
   render() {
-    const { handleSubmit, errorMessage } = this.props;
+    const { handleSubmit, errorMessage, loading } = this.props;
     return (
       <div>
         <WhiteCard>
           <div className="tc black mb4 f2 mt2 pl5 pr5">
             <img src="../public/img/zeriscope_logo.png" className="w-100" alt="logo" />
           </div>
-          <form onSubmit={handleSubmit(this.handleFormSubmit)}>
-            <ZerInput
-              name="username"
-              type="text"
-              label="email address"
-            />
-            <ZerInput
-              name="password"
-              type="password"
-              label="password"
-            />
-            {renderAlert(errorMessage)}
-            <Card>
-              <div className="w-100 pa2 flex">
-                <div className="ml-auto">
-                  <Button action="submit">Sign in</Button>
+          {loading ?
+            <Loader /> :
+            <form onSubmit={handleSubmit(this.handleFormSubmit)}>
+              <ZerInput
+                name="username"
+                type="text"
+                label="email address"
+              />
+              <ZerInput
+                name="password"
+                type="password"
+                label="password"
+              />
+              {renderAlert(errorMessage)}
+              <Card>
+                <div className="w-100 pa2 flex">
+                  <div className="ml-auto">
+                    <Button action="submit">Sign in</Button>
+                  </div>
                 </div>
-              </div>
-            </Card>
-          </form>
+              </Card>
+            </form>
+          }
         </WhiteCard>
       </div>
     );
@@ -67,7 +70,11 @@ function validate(values) {
 }
 
 function mapStateToProps(state) {
-  return { form: state.form, errorMessage: state.authReducer.error };
+  return {
+    form: state.form,
+    errorMessage: state.authReducer.error,
+    loading: state.authReducer.loading
+  };
 }
 
 export default reduxForm({

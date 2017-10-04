@@ -2,11 +2,14 @@ import {
   AUTH_USER,
   AUTH_ERROR,
   UNAUTH_USER,
-  GOT_ACCOUNT
+  GOT_ACCOUNT,
+  LOAD_START,
+  LOAD_END
 } from '../actions/types';
 
 const INITIAL_STATE = {
-  loggedIn: true
+  loggedIn: true,
+  loading: false
 };
 
 export default function (state = INITIAL_STATE, action) {
@@ -19,6 +22,10 @@ export default function (state = INITIAL_STATE, action) {
       return { ...state, error: action.payload };
     case GOT_ACCOUNT:
       return { ...state, user_account: action.payload };
+    case LOAD_START:
+      return { ...state, loading: true };
+    case LOAD_END:
+      return { ...state, loading: false };
     default:
       return state;
   }
