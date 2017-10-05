@@ -20,7 +20,7 @@ class Header extends Component {
       <div className="bg-zer-off-white flex">
         <HalfGrid>
           <div className="tc">
-            <img src="../public/img/zeriscope_icon.png" className="mw2" alt="logo" />
+            <img src="/public/img/zeriscope_icon.png" className="mw2" alt="logo" />
           </div>
         </HalfGrid>
         <HalfGrid>

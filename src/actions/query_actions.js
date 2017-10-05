@@ -18,7 +18,7 @@ function getThis(route, query) {
     url: `${process.env.API_URL}${route}`,
     params: {
       subject_id: query.subject_id,
-      date: query.date
+      date: query.date.toISOString()
     }
   };
   return axios(getObject);

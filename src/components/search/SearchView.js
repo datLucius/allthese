@@ -20,7 +20,7 @@ class SearchView extends Component {
 
   handleFormSubmit({ id, sessionDate }) {
     if (sessionDate) {
-      sessionDate = new Date(sessionDate).toISOString();
+      sessionDate = new Date(sessionDate).getTime();
     }
     this.props.getResults(id, sessionDate);
   }
