@@ -25,6 +25,7 @@
     "no-plusplus": 0,
     "no-case-declarations": 0,
     "jsx-a11y/interactive-supports-focus": 0,
+    "no-debugger": 0,
   },
   "globals": {
     "storage": false,

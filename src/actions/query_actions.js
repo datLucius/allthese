@@ -5,7 +5,6 @@ import moment from 'moment';
 
 import {
   GOT_ALL_SESSIONS,
-  GOT_SESSION,
   TOGGLE_RESULT,
   LOAD_START,
   LOAD_END,
@@ -13,12 +12,13 @@ import {
 } from './types';
 
 function getThis(route, query) {
+  const formattedDate = new Date(Number(query.date)).toISOString();
   const getObject = {
     method: 'get',
     url: `${process.env.API_URL}${route}`,
     params: {
       subject_id: query.subject_id,
-      date: query.date.toISOString()
+      date: formattedDate
     }
   };
   return axios(getObject);
@@ -76,13 +76,24 @@ export function getResults(id, sessionDate) {
   };
 }
 
+function buildResultArray(session, currentArray) {
+  return new Promise((resolve) => {
+    getSession(session)
+      .then((res) => {
+        currentArray.push(res.data.data);
+        resolve(currentArray);
+      });
+  });
+}
+
+
 function getAllSelectedSessions(sessionArray) {
   return new Promise((resolve) => {
-    const csvResults = [];
-    _.forEach(sessionArray, (session) => {
-      getSession(session)
+    let csvResults = [];
+    _.each(sessionArray, (session) => {
+      buildResultArray(session, csvResults)
         .then((res) => {
-          csvResults.push(res.data);
+          csvResults = res;
         });
     });
     resolve(csvResults);
@@ -91,11 +102,20 @@ function getAllSelectedSessions(sessionArray) {
 
 function formatSessionObjects(sessions) {
   return new Promise((resolve) => {
-    const data = sessions.map((session) => {
-      const rObj = [`sessionID: ${session.session_id}`, `subjectID: ${session.subject_id}`, `created_at: ${moment(session.created_at).format('MM/DD/YYYY')}`, `sessionTime: ${moment(session.sessionTime).format('MM/DD/YYYY')}`, `device_address: ${session.device_adress}`, `device_description: ${session.device_description}`];
+    console.log('format this', sessions);
+    resolve(sessions.map((session) => {
+      const rObj = [
+        `sessionID: ${session.session_id}`,
+        `subjectID: ${session.subject_id}`,
+        `created_at: ${moment(session.created_at).format('MM/DD/YYYY')}`, `sessionTime: ${moment(session.sessionTime).format('MM/DD/YYYY')}`, `device_address: ${session.device_adress}`];
+      _.each(session.frame_list, (frame, i) => {
+        debugger; // eslint-ignore-line
+        const frameString = `frame ${i} : an_in: ${frame.an_in[0]}, dig_in: ${frame.dig_in}, seq: ${frame.seq}`;
+        rObj.push(frameString);
+      });
+      console.log('rObj', rObj);
       return rObj;
-    });
-    resolve(data);
+    }));
   });
 }
 
@@ -115,14 +135,36 @@ export function buildCSV(sessionArray) {
     dispatch({ type: LOAD_START });
     getAllSelectedSessions(sessionArray)
       .then((sessions) => {
-        formatSessionObjects(sessions)
-          .then((formattedSessions) => {
-            buildCSVString(formattedSessions)
-              .then((csvContent) => {
-                dispatch({ type: LOAD_END });
-                window.open(csvContent);
-              });
-          });
+        const formattedSessionArray = [];
+        console.log('before for', sessions);
+        sessions.forEach((session) => {
+          console.log('this', session);
+          const rObj = {
+            sessionID: session.session_id,
+            subjectID: session.subject_id,
+            created_at: moment(session.created_at).format('MM/DD/YYYY'),
+            sessionTime: moment(session.sessionTime).format('MM/DD/YYYY'),
+            device_adress: session.device_adress
+          };
+          // _.each(session.frames_list, (frame, i) => {
+          //   debugger; // eslint-ignore-line
+          //   const frameString = `frame ${i} : an_in: ${frame.an_in[0]}, dig_in: ${frame.dig_in}, seq: ${frame.seq}`;
+          //   rObj.push(frameString);
+          // });
+          console.log('rObj', rObj);
+          formattedSessionArray.push(rObj);
+        });
+        console.log('formattedSess', formattedSessionArray);
+        // formatSessionObjects(sessions)
+        //   .then((formattedSessions) => {
+        //     console.log('formattedsess', formattedSessions);
+        //     buildCSVString(formattedSessions)
+        //       .then((csvContent) => {
+        //         dispatch({ type: LOAD_END });
+        //         console.log('csvContent', csvContent);
+        //         // window.open(csvContent);
+        //       });
+        //   });
       });
   };
 }
