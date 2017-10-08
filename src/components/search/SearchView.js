@@ -1,7 +1,6 @@
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
 import { reduxForm } from 'redux-form';
-import moment from 'moment';
 
 import { getResults } from '../../actions';
 
