@@ -76,44 +76,37 @@ export function getResults(id, sessionDate) {
   };
 }
 
-function buildResultArray(session, currentArray) {
-  return new Promise((resolve) => {
-    getSession(session)
-      .then((res) => {
-        currentArray.push(res.data.data);
-        resolve(currentArray);
-      });
-  });
-}
-
+// function buildResultArray(session, currentArray) {
+//   return new Promise((resolve) => {
+//     getSession(session)
+//       .then((res) => {
+//         currentArray.push(res.data.data);
+//         resolve(currentArray);
+//       });
+//   });
+// }
 
 function getAllSelectedSessions(sessionArray) {
   return new Promise((resolve) => {
-    let csvResults = [];
-    _.each(sessionArray, (session) => {
-      buildResultArray(session, csvResults)
-        .then((res) => {
-          csvResults = res;
-        });
+    const promises = [];
+    _.each(sessionArray, (id) => {
+      promises.push(axios.get(`${process.env.API_URL}/session/${id}`));
     });
-    resolve(csvResults);
+    resolve(promises);
   });
 }
 
 function formatSessionObjects(sessions) {
   return new Promise((resolve) => {
-    console.log('format this', sessions);
     resolve(sessions.map((session) => {
       const rObj = [
-        `sessionID: ${session.session_id}`,
-        `subjectID: ${session.subject_id}`,
-        `created_at: ${moment(session.created_at).format('MM/DD/YYYY')}`, `sessionTime: ${moment(session.sessionTime).format('MM/DD/YYYY')}`, `device_address: ${session.device_adress}`];
-      _.each(session.frame_list, (frame, i) => {
-        debugger; // eslint-ignore-line
-        const frameString = `frame ${i} : an_in: ${frame.an_in[0]}, dig_in: ${frame.dig_in}, seq: ${frame.seq}`;
-        rObj.push(frameString);
-      });
-      console.log('rObj', rObj);
+        `sessionID: ${session.data.data.session_id}`,
+        `subjectID: ${session.data.data.subject_id}`,
+        `created_at: ${moment(session.data.data.created_at).format('MM/DD/YYYY')}`, `sessionTime: ${moment(session.data.data.sessionTime).format('MM/DD/YYYY')}`, `device_address: ${session.data.data.device_adress}`];
+      // _.each(session.data.data.frames_list, (frame, i) => {
+      //   const frameString = `frame ${i} : an_in: ${frame.an_in[0]}, dig_in: ${frame.dig_in}, seq: ${frame.seq}`;
+      //   rObj.push(frameString);
+      // });
       return rObj;
     }));
   });
@@ -134,37 +127,17 @@ export function buildCSV(sessionArray) {
   return (dispatch) => {
     dispatch({ type: LOAD_START });
     getAllSelectedSessions(sessionArray)
-      .then((sessions) => {
-        const formattedSessionArray = [];
-        console.log('before for', sessions);
-        sessions.forEach((session) => {
-          console.log('this', session);
-          const rObj = {
-            sessionID: session.session_id,
-            subjectID: session.subject_id,
-            created_at: moment(session.created_at).format('MM/DD/YYYY'),
-            sessionTime: moment(session.sessionTime).format('MM/DD/YYYY'),
-            device_adress: session.device_adress
-          };
-          // _.each(session.frames_list, (frame, i) => {
-          //   debugger; // eslint-ignore-line
-          //   const frameString = `frame ${i} : an_in: ${frame.an_in[0]}, dig_in: ${frame.dig_in}, seq: ${frame.seq}`;
-          //   rObj.push(frameString);
-          // });
-          console.log('rObj', rObj);
-          formattedSessionArray.push(rObj);
+      .then((promises) => {
+        axios.all(promises).then((axiosObjects) => {
+          formatSessionObjects(axiosObjects)
+            .then((formattedSessions) => {
+              buildCSVString(formattedSessions)
+                .then((csvContent) => {
+                  window.open(csvContent);
+                  dispatch({ type: LOAD_END });
+                });
+            });
         });
-        console.log('formattedSess', formattedSessionArray);
-        // formatSessionObjects(sessions)
-        //   .then((formattedSessions) => {
-        //     console.log('formattedsess', formattedSessions);
-        //     buildCSVString(formattedSessions)
-        //       .then((csvContent) => {
-        //         dispatch({ type: LOAD_END });
-        //         console.log('csvContent', csvContent);
-        //         // window.open(csvContent);
-        //       });
-        //   });
       });
   };
 }
