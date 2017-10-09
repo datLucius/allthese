@@ -18,10 +18,11 @@ class SearchView extends Component {
   }
 
   handleFormSubmit({ id, sessionDate }) {
+    let formattedSessionDate = '';
     if (sessionDate) {
-      sessionDate = new Date(sessionDate).getTime();
+      formattedSessionDate = new Date(sessionDate).getTime();
     }
-    this.props.getResults(id, sessionDate);
+    this.props.getResults(id, formattedSessionDate);
   }
 
   render() {
