@@ -12,8 +12,8 @@ import {
 } from './types';
 
 function getThis(route, query) {
-  let formattedDate = '';
-  if (!query.date === 'undefined') {
+  let formattedDate = false;
+  if (query.date !== 'undefined') {
     formattedDate = new Date(Number(query.date)).toISOString();
   }
   const getObject = {
