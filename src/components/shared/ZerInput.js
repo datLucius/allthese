@@ -83,7 +83,7 @@ const renderCheckboxInput = (field) => {
   );
 };
 
-const renderDatePicker = ({ input, placeholder, defaultValue, meta: { touched, error } }) => (
+const renderDatePicker = ({ input, meta: { touched, error } }) => (
   <div>
     <DatePicker {...input} dateForm="MM/DD/YYYY" selected={input.value ? moment(input.value) : null} className="focus-bottom-border no-focus mb2 w-100 dark-gray f3 bg-transparent" />
     {touched && error && <span>{error}</span>}
