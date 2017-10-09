@@ -93,8 +93,8 @@ function formatSessionObjects(sessions) {
         `sessionID: ${session.data.data.session_id}`,
         `subjectID: ${session.data.data.subject_id}`,
         `created_at: ${moment(session.data.data.created_at).format('MM/DD/YYYY')}`, `sessionTime: ${moment(session.data.data.sessionTime).format('MM/DD/YYYY')}`, `device_address: ${session.data.data.device_adress}`];
-      _.each(session.data.data.frames_list, (frame) => {
-        const frameString = `frame ${frame._id} : an_in: ${frame.an_in[0]}, dig_in: ${frame.dig_in}, seq: ${frame.seq}`;
+      _.each(session.data.data.frames_list, (frame, i) => {
+        const frameString = `frame ${i} : an_in: ${frame.an_in[0]}, dig_in: ${frame.dig_in}, seq: ${frame.seq}`;
         rObj.push(frameString);
       });
       return rObj;
