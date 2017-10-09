@@ -37,7 +37,7 @@ module.exports = {
       'process.env': {
         'NODE_ENV': JSON.stringify('production')
       }
-    })
+    }),
     new Dotenv({
       path: './.env',
       safe: false
