@@ -12,7 +12,10 @@ import {
 } from './types';
 
 function getThis(route, query) {
-  const formattedDate = new Date(Number(query.date)).toISOString();
+  let formattedDate = '';
+  if (!query.date === 'undefined') {
+    formattedDate = new Date(Number(query.date)).toISOString();
+  }
   const getObject = {
     method: 'get',
     url: `${process.env.API_URL}${route}`,
@@ -69,7 +72,11 @@ export function toggleResult(id) {
 
 export function getResults(id, sessionDate) {
   return (dispatch) => {
-    browserHistory.push(`/results/${id}/${sessionDate}`);
+    if (sessionDate) {
+      browserHistory.push(`/results/${id}/${sessionDate}`);
+    } else {
+      browserHistory.push(`/results/${id}/undefined`);
+    }
     dispatch({
       type: 'get_results'
     });
