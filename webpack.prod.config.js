@@ -1,5 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
+const Dotenv = require('dotenv-webpack');
 
 module.exports = {
 
@@ -36,6 +37,10 @@ module.exports = {
       'process.env': {
         'NODE_ENV': JSON.stringify('production')
       }
+    })
+    new Dotenv({
+      path: './.env',
+      safe: false
     })
   ],
   devServer: {
