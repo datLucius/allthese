@@ -96,15 +96,19 @@ function getAllSelectedSessions(sessionArray) {
 function formatSessionObjects(sessions) {
   return new Promise((resolve) => {
     resolve(sessions.map((session) => {
-      const rObj = [
-        `sessionID: ${session.data.data.session_id}`,
-        `subjectID: ${session.data.data.subject_id}`,
-        `created_at: ${moment(session.data.data.created_at).format('MM/DD/YYYY')}`, `sessionTime: ${moment(session.data.data.sessionTime).format('MM/DD/YYYY')}`, `device_address: ${session.data.data.device_adress}`];
-      _.each(session.data.data.frames_list, (frame, i) => {
-        const frameString = `frame ${i} : an_in: ${frame.an_in[0]}, dig_in: ${frame.dig_in}, seq: ${frame.seq}`;
-        rObj.push(frameString);
-      });
-      return rObj;
+      const { session_id, subject_id, created_at, sessionTime, frames_list, device_address } = session.data.data;
+      const csvArray = [
+        `sessionID: ${session_id}`,
+        `subjectID: ${subject_id}`,
+        `created_at: ${moment(created_at).format('MM/DD/YYYY')}`, `sessionTime: ${moment(sessionTime).format('h:mm:ss a')}`, `device_address: ${device_address}`];
+      if (frames_list) {
+        csvArray.push('\nframe, an_in, dig_in, seq');
+        _.each(frames_list, (frame, i) => {
+          const frameString = `\n${i}, ${frame.an_in[0]}, ${frame.dig_in}, ${frame.seq}`;
+          csvArray.push(frameString);
+        });
+      }
+      return csvArray;
     }));
   });
 }
