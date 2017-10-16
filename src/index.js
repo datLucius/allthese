@@ -4,7 +4,6 @@ import { createStore, applyMiddleware } from 'redux';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import reduxThunk from 'redux-thunk';
-import 'react-datepicker/dist/react-datepicker.css';
 
 import reducers from './reducers';
 
