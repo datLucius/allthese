@@ -1,6 +1,12 @@
 const path = require('path');
 const webpack = require('webpack');
 const Dotenv = require('dotenv-webpack');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+
+const styles = {
+  test: /\.(scss)$/,
+  use: ExtractTextPlugin.extract(['css-loader?sourceMap']),
+};
 
 module.exports = {
 
@@ -20,7 +26,7 @@ module.exports = {
       query: {
         presets: ['react', 'es2015', 'stage-1']
       }
-    }]
+    }, styles]
   },
   resolve: {
     extensions: ['.js', '.jsx']
