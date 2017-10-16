@@ -134,7 +134,10 @@ export function buildCSV(sessionArray) {
             .then((formattedSessions) => {
               buildCSVString(formattedSessions)
                 .then((csvContent) => {
-                  window.open(csvContent);
+                  const link = document.createElement('a');
+                  link.setAttribute('href', csvContent);
+                  link.setAttribute('download', 'ecg_data.csv');
+                  link.click();
                   dispatch({ type: LOAD_END });
                 });
             });
