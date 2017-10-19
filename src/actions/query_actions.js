@@ -96,15 +96,17 @@ function getAllSelectedSessions(sessionArray) {
 function formatSessionObjects(sessions) {
   return new Promise((resolve) => {
     resolve(sessions.map((session) => {
-      const { session_id, subject_id, created_at, sessionTime, frames_list, device_address } = session.data.data;
+      const { session_id, subject_id, created_at, frames_list, device_address } = session.data.data;
       const csvArray = [
         `sessionID: ${session_id}`,
         `subjectID: ${subject_id}`,
-        `created_at: ${moment(created_at).format('MM/DD/YYYY')}`, `sessionTime: ${moment(sessionTime).format('h:mm:ss a')}`, `device_address: ${device_address}`];
+        `created_at: ${moment(created_at).format('MM/DD/YYYY')}`, `sessionTime: ${moment(created_at).format('h:mm:ss a')}`, `device_address: ${device_address}`];
       if (frames_list) {
-        csvArray.push('\nframe, an_in, dig_in, seq');
+        csvArray.push('\nframe, an_in, dig_in, seq, , ECG (V), ECG (mV), qrs, r-r');
         _.each(frames_list, (frame, i) => {
-          const frameString = `\n${i}, ${frame.an_in[0]}, ${frame.dig_in}, ${frame.seq}`;
+          const ECGV = (((frame.an_in[0] / 65536) - 0.5) * 0.3) / 1000;
+          const ECGMV = ECGV * 0.1;
+          const frameString = `\n${i}, ${frame.an_in[0]}, ${frame.dig_in}, ${frame.seq}, , ${ECGV}, ${ECGMV}`;
           csvArray.push(frameString);
         });
       }
@@ -130,13 +132,15 @@ export function buildCSV(sessionArray) {
     getAllSelectedSessions(sessionArray)
       .then((promises) => {
         axios.all(promises).then((axiosObjects) => {
+          console.log('this', axiosObjects);
+          const fileName = axiosObjects[0].data.data.session_id;
           formatSessionObjects(axiosObjects)
             .then((formattedSessions) => {
               buildCSVString(formattedSessions)
                 .then((csvContent) => {
                   const link = document.createElement('a');
                   link.setAttribute('href', csvContent);
-                  link.setAttribute('download', 'ecg_data.csv');
+                  link.setAttribute('download', `${fileName}.csv`);
                   link.click();
                   dispatch({ type: LOAD_END });
                 });
