@@ -14,7 +14,7 @@ import {
 function getThis(route, query) {
   let formattedDate = false;
   if (query.date !== 'undefined') {
-    formattedDate = new Date(Number(query.date)).toISOString();
+    formattedDate = `${query.date}T00:00:00.000Z`;
   }
   const getObject = {
     method: 'get',
@@ -34,6 +34,7 @@ export function getSessionsByParams(params) {
     });
     getThis('/sessions', params)
       .then((res) => {
+        console.log('sessions', res.data);
         dispatch({
           type: GOT_ALL_SESSIONS,
           payload: res.data.data
@@ -70,10 +71,18 @@ export function toggleResult(id) {
   };
 }
 
+function applyOffSet(time) {
+  const offSet = new Date().getTimezoneOffset() / 60;
+  const offSetDate = moment(time).add(-offSet, 'h').format();
+  return new Date(offSetDate).getTime();
+}
+
 export function getResults(id, sessionDate) {
   return (dispatch) => {
     if (sessionDate) {
-      browserHistory.push(`/results/${id}/${sessionDate}`);
+      const s = sessionDate.split("/");
+      const formattedSessionDate = `${s[2]}-${s[0]}-${s[1]}`;
+      browserHistory.push(`/results/${id}/${formattedSessionDate}`);
     } else {
       browserHistory.push(`/results/${id}/undefined`);
     }
