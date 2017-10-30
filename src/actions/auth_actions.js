@@ -22,7 +22,7 @@ export function logOutUser() {
 function getUser(username, password) {
   return axios({
     method: 'get',
-    url: `${process.env.API_URL}/user/${username}/${password}`
+    url: `https://zeriscope-web-army.herokuapp.com/api/user/${username}/${password}`
   });
 }
 

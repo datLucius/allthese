@@ -21,7 +21,7 @@ function getThis(route, query) {
   }
   const getObject = {
     method: 'get',
-    url: `${process.env.API_URL}${route}`,
+    url: `https://zeriscope-web-army.herokuapp.com/api${route}`,
     params
   };
   return axios(getObject);
@@ -57,7 +57,7 @@ export function getSessionsByParams(params) {
 export function getSession(id) {
   return axios({
     method: 'get',
-    url: `${process.env.API_URL}/session/${id}`,
+    url: `https://zeriscope-web-army.herokuapp.com/api/session/${id}`,
   });
 }
 
@@ -87,7 +87,7 @@ function getAllSelectedSessions(sessionArray) {
   return new Promise((resolve) => {
     const promises = [];
     _.each(sessionArray, (id) => {
-      promises.push(axios.get(`${process.env.API_URL}/session/${id}`));
+      promises.push(axios.get(`https://zeriscope-web-army.herokuapp.com/api/session/${id}`));
     });
     resolve(promises);
   });
