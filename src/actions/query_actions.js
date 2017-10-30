@@ -12,17 +12,17 @@ import {
 } from './types';
 
 function getThis(route, query) {
-  let formattedDate = false;
+  const params = {};
   if (query.date !== 'undefined') {
-    formattedDate = new Date(Number(query.date)).toISOString();
+    params.date = new Date(Number(query.date)).toISOString();
+  }
+  if (query.subject_id !== 'undefined') {
+    params.subject_id = query.subject_id;
   }
   const getObject = {
     method: 'get',
     url: `${process.env.API_URL}${route}`,
-    params: {
-      subject_id: query.subject_id,
-      date: formattedDate
-    }
+    params
   };
   return axios(getObject);
 }
