@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
+import { Link } from 'react-router';
 
 import { logOutUser } from './../actions';
 
@@ -19,9 +20,14 @@ class Header extends Component {
     return (
       <div className="bg-zer-off-white flex">
         <HalfGrid>
-          <div className="tc">
+          {this.props.authenticated
+          ? <Link className="tc" to="/search">
+            <img src="/public/img/zeriscope_icon.png" className="mw2" alt="logo" />
+          </Link>
+          : <div className="tc">
             <img src="/public/img/zeriscope_icon.png" className="mw2" alt="logo" />
           </div>
+        }
         </HalfGrid>
         <HalfGrid>
           {this.props.authenticated && <div className="tc pointer" onClick={() => this.handleSignOutClick()} role="button">
