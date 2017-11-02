@@ -21,9 +21,11 @@ class Header extends Component {
       <div className="bg-zer-off-white flex">
         <HalfGrid>
           {this.props.authenticated
-          ? <Link className="tc" to="/search">
-            <img src="/public/img/zeriscope_icon.png" className="mw2" alt="logo" />
-          </Link>
+          ? <div className="tc">
+            <Link className="tc" to="/search">
+              <img src="/public/img/zeriscope_icon.png" className="mw2" alt="logo" />
+            </Link>
+          </div>
           : <div className="tc">
             <img src="/public/img/zeriscope_icon.png" className="mw2" alt="logo" />
           </div>
