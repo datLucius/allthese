@@ -141,7 +141,9 @@ export function buildCSV(sessionArray) {
                   const link = document.createElement('a');
                   link.setAttribute('href', csvContent);
                   link.setAttribute('download', `${fileName}.csv`);
+                  document.body.appendChild(link);
                   link.click();
+                  document.body.removeChild(link);
                   dispatch({ type: LOAD_END });
                 });
             });
