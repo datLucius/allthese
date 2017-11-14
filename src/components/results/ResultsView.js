@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
 
-import { getSessionsByParams, buildCSV } from '../../actions';
+import { getSessionsByParams, getCSVLink } from '../../actions';
 import CenterCard from '../shared/CenterCard';
 import Card from '../shared/Card';
 import Loader from '../shared/Loader';
@@ -19,7 +19,7 @@ class ResultsView extends Component {
   }
 
   handleClick() {
-    this.props.buildCSV(this.props.sessionArray);
+    this.props.getCSVLink(this.props.selectedSession);
   }
 
   render() {
@@ -71,11 +71,11 @@ class ResultsView extends Component {
 function mapStateToProps(state) {
   return {
     sessions: state.queryReducer.sessions,
-    sessionArray: state.queryReducer.sessionArray,
+    selectedSession: state.queryReducer.selectedSession,
     loading: state.queryReducer.loading
   };
 }
 export default connect(mapStateToProps, {
   getSessionsByParams,
-  buildCSV
+  getCSVLink,
 })(ResultsView);
