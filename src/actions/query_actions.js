@@ -151,3 +151,15 @@ export function buildCSV(sessionArray) {
       });
   };
 }
+
+export function getCSVLink(id) {
+  return (dispatch) => {
+    dispatch({ type: LOAD_START });
+    const link = document.createElement('a');
+    link.setAttribute('href', `https://zeriscope-web-army.herokuapp.com/api/session/${id}`);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    dispatch({ type: LOAD_END });
+  };
+}

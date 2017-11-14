@@ -10,7 +10,8 @@ const INITIAL_STATE = {
   sessions: [],
   sessionArray: [],
   currentSession: {},
-  loading: false
+  loading: false,
+  selectedSession: '123'
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -24,14 +25,7 @@ export default (state = INITIAL_STATE, action) => {
     case LOAD_END:
       return { ...state, loading: false };
     case TOGGLE_RESULT:
-      const newSessions = state.sessionArray;
-      const index = state.sessionArray.indexOf(action.payload);
-      if (index !== -1) {
-        newSessions.splice(index, 1);
-      } else {
-        newSessions.push(action.payload);
-      }
-      return { ...state, sessionArray: newSessions };
+      return { ...state, selectedSession: action.payload };
     default:
       return state;
   }

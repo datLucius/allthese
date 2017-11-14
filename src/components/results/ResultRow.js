@@ -23,7 +23,7 @@ class ResultRow extends Component {
         <div className="w-10 b--white bw1 ba tc flex flex-column justify-center br-0 f6">{this.props.myResult.createdAt ? moment(this.props.myResult.createdAt).format('HH:mm:ss') : moment(this.props.myResult.created_at).format('HH:mm:ss')}</div>
         <div className="w-20 b--white bw1 ba tc flex flex-column justify-center br-0 f6">{this.props.myResult.device_address || 'NA'}</div>
         <div className="w-10 b--white bw1 ba tc flex flex-column justify-center">
-          <input type="checkbox" name={this.props.myResult.session_id} className="center pointer" onClick={() => { this.handleClick(); }} />
+          <input type="checkbox" name={this.props.myResult.session_id} checked={this.props.myResult._id === this.props.selectedSession} className="center pointer" onChange={() => this.handleClick()} />
         </div>
       </div>
     );
@@ -32,7 +32,8 @@ class ResultRow extends Component {
 
 function mapStateToProps(state) {
   return {
-    results: state.queryReducer.results
+    results: state.queryReducer.results,
+    selectedSession: state.queryReducer.selectedSession
   };
 }
 
