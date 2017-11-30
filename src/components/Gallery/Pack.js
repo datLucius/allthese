@@ -34,6 +34,7 @@ class GridContents extends React.Component {
               <div className="map">
                 <GoogleMap
                   defaultCenter={this.state.center}
+                  key={process.env.API_KEY}
                   defaultZoom={this.state.zoom}>
                   <img src={item.img.small} className="ba" alt="cig" lat={item.lat} lng={item.lng} />
                 </GoogleMap>
