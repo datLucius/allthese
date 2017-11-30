@@ -1,5 +1,4 @@
 import {
-  GOT_CIG,
   GOT_CIGS,
   LOAD_START,
   LOAD_END,
@@ -17,8 +16,6 @@ export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case GOT_CIGS:
       return { ...state, cigs: [...state.cigs.concat(action.payload)] };
-    case GOT_CIG:
-      return { ...state, currentCig: action.payload };
     case LOAD_START:
       return { ...state, loading: true };
     case LOAD_END:

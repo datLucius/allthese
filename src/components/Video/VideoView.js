@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 import moment from 'moment';
 
 import BlackBox from '../shared/BlackBox';
-import CigLoader from '../shared/CigLoader';
 import { updateColor } from '../../actions';
 
 class VideoView extends Component {

@@ -10,7 +10,6 @@ import reducers from './reducers';
 import App from './components/app';
 import Video from './components/Video/VideoView';
 import Gallery from './components/Gallery/GalleryView';
-import CigMap from './components/CigMap/CigMapView';
 import About from './components/About/AboutView';
 
 const createStoreWithMiddleware = applyMiddleware(
@@ -24,7 +23,6 @@ ReactDOM.render(
       <Route path="/" component={App}>
         <IndexRoute component={Video} />
         <Route path="gallery" component={Gallery} />
-        <Route path="map" component={CigMap} />
         <Route path="about" component={About} />
       </Route>
     </Router>

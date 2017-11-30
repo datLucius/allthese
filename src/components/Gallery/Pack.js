@@ -1,7 +1,7 @@
 import React from 'react';
-import axios from 'axios';
-import CigCard from '../shared/CigCard';
 import GoogleMap from 'google-map-react';
+
+import CigCard from '../shared/CigCard';
 
 class GridContents extends React.Component {
   constructor(props) {
@@ -34,8 +34,7 @@ class GridContents extends React.Component {
               <div className="map">
                 <GoogleMap
                   defaultCenter={this.state.center}
-                  defaultZoom={this.state.zoom}
-   >
+                  defaultZoom={this.state.zoom}>
                   <img src={item.img.small} className="ba" alt="cig" lat={item.lat} lng={item.lng} />
                 </GoogleMap>
               </div>

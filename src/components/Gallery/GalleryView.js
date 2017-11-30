@@ -1,5 +1,3 @@
-// THIS VIEW SHOULD LISTEN FOR HEIGHT AND CONSEQUENTLY FETCH RESULTS, FEEDING THOSE RESULTS TO GENERATED ANIMATED GRIDS
-
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
 
