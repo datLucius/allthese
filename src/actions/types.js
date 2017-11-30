@@ -1,15 +1,8 @@
-// auth
-export const AUTH_USER = 'auth_user';
-export const UNAUTH_USER = 'unauth_user';
-export const AUTH_ERROR = 'auth_error';
-export const GOT_USER = 'got_user';
-
-// query
-export const GOT_SESSION = 'got_session';
-export const GOT_ALL_SESSIONS = 'got_all_sessions';
-
-// csv
-export const TOGGLE_RESULT = 'toggle_results';
+// cigs
+export const GOT_CIGS = 'got_cigs';
+export const GOT_CIG = 'got_all_sessions';
+export const UPDATE_COLOR = 'update_color';
+export const UPDATE_PAGE = 'update_page';
 
 //  loading
 export const LOAD_START = 'load_start';

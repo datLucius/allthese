@@ -1,4 +1,4 @@
-# Zeriscope Query Dashboard
+# ALL THESE CIGARETTE PACKS
 
 ```
 > npm install

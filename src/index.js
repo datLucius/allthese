@@ -8,10 +8,10 @@ import reduxThunk from 'redux-thunk';
 import reducers from './reducers';
 
 import App from './components/app';
-import Signin from './components/auth/Signin';
-import Search from './components/search/SearchView';
-import Results from './components/results/ResultsView';
-import RequireAuth from './components/auth/RequireAuth';
+import Video from './components/Video/VideoView';
+import Gallery from './components/Gallery/GalleryView';
+import CigMap from './components/CigMap/CigMapView';
+import About from './components/About/AboutView';
 
 const createStoreWithMiddleware = applyMiddleware(
   reduxThunk
@@ -20,11 +20,12 @@ const store = createStoreWithMiddleware(reducers);
 
 ReactDOM.render(
   <Provider store={store}>
-    <Router history={browserHistory}>
+    <Router history={browserHistory} onUpdate={() => window.scrollTo(0, 0)}>
       <Route path="/" component={App}>
-        <IndexRoute component={Signin} />
-        <Route path="search" component={RequireAuth(Search)} />
-        <Route path="results/:subject_id/:date" component={RequireAuth(Results)} />
+        <IndexRoute component={Video} />
+        <Route path="gallery" component={Gallery} />
+        <Route path="map" component={CigMap} />
+        <Route path="about" component={About} />
       </Route>
     </Router>
   </Provider>
