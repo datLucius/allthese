@@ -3,6 +3,10 @@ import GoogleMap from 'google-map-react';
 
 import CigCard from '../shared/CigCard';
 
+const GoogleMapConfig = {
+  key: process.env.API_KEY
+};
+
 class GridContents extends React.Component {
   constructor(props) {
     super(props);
@@ -33,9 +37,7 @@ class GridContents extends React.Component {
             <div className="bw4 ba bg-black">
               <div className="map">
                 <GoogleMap
-                  bootstrapURLKeys={{
-                    key: process.env.API_KEY
-                  }}
+                  bootstrapURLKeys={GoogleMapConfig}
                   defaultCenter={this.state.center}
                   defaultZoom={this.state.zoom}>
                   <img src={item.img.small} className="ba" alt="cig" lat={item.lat} lng={item.lng} />
