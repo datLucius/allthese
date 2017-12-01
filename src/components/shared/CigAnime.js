@@ -38,7 +38,7 @@ const CigAnime = () => (
           d={lineOne}
           direction="alternate"
           loop
-      >
+        >
           <path fill="none"
             stroke="#000000"
             strokeLinejoin="round"
@@ -52,7 +52,7 @@ const CigAnime = () => (
           d={lineTwo}
           direction="alternate"
           loop
-      >
+        >
           <path fill="none"
             stroke="#000000"
             strokeLinejoin="round"
@@ -66,7 +66,7 @@ const CigAnime = () => (
           d={lineThree}
           direction="alternate"
           loop
-      >
+        >
           <path fill="none"
             stroke="#000000"
             strokeLinejoin="round"
@@ -80,7 +80,7 @@ const CigAnime = () => (
           d={lineFour}
           direction="alternate"
           loop
-      >
+        >
           <path fill="none"
             stroke="#000000"
             strokeLinejoin="round"

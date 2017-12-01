@@ -18,6 +18,7 @@ class VideoView extends Component {
   }
 
   render() {
+    const { color } = this.props;
     return (
       <div className="mt5 mw8 center">
         <h1 className="playfair f-subheadline lh-title pa4 tc">Hey, check out all these cigarette packs I found</h1>
@@ -28,15 +29,15 @@ class VideoView extends Component {
         </div>
         <div className="w-100 mt2 pa4 flex justify-center">
           <div className="f3">
-            <div className="lh-copy" style={{ color: this.props.color }}>1278 <span className="black">packs</span></div>
-            <div className="lh-copy" style={{ color: this.props.color }}>{this.state.days} <span className="black" >days</span></div>
+            <div className="lh-copy" style={{ color }}>1289<span className="black"> packs</span></div>
+            <div className="lh-copy" style={{ color }}>{this.state.days} <span className="black" >days</span></div>
           </div>
         </div>
         <div className="f3 tc w-100">
-          <div className="lh-copy" style={{ color: this.props.color }} />
+          <div className="lh-copy" style={{ color }} />
         </div>
         <div className="f4 mw6 center pa4 bt bw1">
-          <div className="lh-copy" style={{ color: this.props.color }}>@ <span className="black" >US, Italy, Croatia, Czech Republic, Netherlands, Germany, Ireland, Scotland, England, Iceland, France, Spain</span></div>
+          <div className="lh-copy" style={{ color }}>@ <span className="black" >US, Italy, Croatia, Czech Republic, Netherlands, Germany, Ireland, Scotland, England, Iceland, France, Spain</span></div>
         </div>
       </div>
     );

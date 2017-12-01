@@ -19,9 +19,9 @@ class CigLogo extends Component {
     return (
       <div className="di ml2 pointer" onMouseEnter={this.onMouseEnter}>
         {this.state.hover
-        ? <CigAnime />
-      : <CigStatic />
-  }
+          ? <CigAnime />
+          : <CigStatic />
+        }
       </div>
     );
   }

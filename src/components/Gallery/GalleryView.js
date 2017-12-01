@@ -9,7 +9,6 @@ import CigLoader from '../shared/CigLoader';
 class GalleryView extends Component {
   constructor(props) {
     super(props);
-    this.getMoreCigs = this.getMoreCigs.bind(this);
     this.updateDimensions = this.updateDimensions.bind(this);
   }
 
@@ -19,7 +18,6 @@ class GalleryView extends Component {
 
   componentWillMount() {
     this.props.getCigs(this.props.page);
-    this.props.updateColor(this.props.color);
   }
 
   updateDimensions() {
@@ -40,7 +38,7 @@ class GalleryView extends Component {
   }
 
   render() {
-    const cigs = this.props.cigs;
+    const { cigs } = this.props;
     return (
       <div onScroll={this.updateDimensions} className="mw9 center ph3-ns mt6">
         <div className="cf ph2-ns">

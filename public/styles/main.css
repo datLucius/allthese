@@ -60,19 +60,41 @@
 }
 
 .label-menu {
-  -webkit-animation: expand 1s; /* Safari, Chrome and Opera > 12.1 */
-     -moz-animation: expand 1s; /* Firefox < 16 */
-      -ms-animation: expand 1s; /* Internet Explorer */
-       -o-animation: expand 1s; /* Opera < 12.1 */
-          animation: expand 1s;
+  -webkit-animation: fadeit 1s; /* Safari, Chrome and Opera > 12.1 */
+     -moz-animation: fadeit 1s; /* Firefox < 16 */
+      -ms-animation: fadeit 1s; /* Internet Explorer */
+       -o-animation: fadeit 1s; /* Opera < 12.1 */
+          animation: fadeit 1s;
 }
 
-@keyframes expand {
+@keyframes fadeit {
   from { opacity: 0; }
   to {
     opacity: 1;
   }
 }
+.map-pack-container {
+  width: 36px;
+}
+
+.expand-enter {
+  -webkit-animation: expandit 1s ease; /* Safari, Chrome and Opera > 12.1 */
+     -moz-animation: expandit 1s ease; /* Firefox < 16 */
+      -ms-animation: expandit 1s ease; /* Internet Explorer */
+       -o-animation: expandit 1s ease; /* Opera < 12.1 */
+          animation: expandit 1s ease;
+}
+
+@keyframes expandit {
+  from { width: 50%;
+    opacity: 0;
+  }
+  to {
+    width: 100%;
+    opacity: 1;
+  }
+}
+
 .map{
   width: 100%;
   height: 400px;
