@@ -20,9 +20,8 @@ class MobileMenu extends Component {
   render() {
     return (
       <div>
-        <CigLogo />
         <div className="di pointer">
-          <div className="fr menu-svg" onClick={this.onClick} role="button">
+          <div className="menu-svg fixed right-0 top-0" onClick={this.onClick} role="button">
             <CigMenuSVG onClick={this.onClick} />
           </div>
         </div>

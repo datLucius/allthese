@@ -17,7 +17,7 @@ class CigLogo extends Component {
 
   render() {
     return (
-      <div className="di ml2 pointer" onMouseEnter={this.onMouseEnter}>
+      <div className="fixed ml2 pointer" onMouseEnter={this.onMouseEnter}>
         {this.state.hover
           ? <CigAnime />
           : <CigStatic />
