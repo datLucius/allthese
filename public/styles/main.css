@@ -107,3 +107,15 @@
 .image-size {
   max-height: 400px;
 }
+.pack-hover {
+  position: relative;
+}
+
+.pack-hover:hover .map-icon-container {
+  opacity: 1;
+}
+.map-icon-container {
+  opacity: 0;
+  position: absolute;
+  top: 0; left: 0;
+}

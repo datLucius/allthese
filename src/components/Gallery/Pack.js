@@ -2,6 +2,7 @@ import React from 'react';
 
 import CigCard from '../shared/CigCard';
 import CigMap from './CigMap';
+import MapIcon from '../shared/MapIcon';
 
 class GridContents extends React.Component {
   constructor(props) {
@@ -34,12 +35,15 @@ class GridContents extends React.Component {
             </div>
           :
             <div role="button"
-              className="tc"
+              className="tc pack-hover"
               onClick={() => {
                 if (item.lat) {
                   this.setState({ map: !this.state.map, hasmap: true });
                 }
               }}>
+              <div className="map-icon-container bg-black pa2">
+                <MapIcon />
+              </div>
               <img src={this.props.item.img.medium} className="image-size bw4 ba" alt="cig" />
             </div>
         }
