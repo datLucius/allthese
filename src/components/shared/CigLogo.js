@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import CigAnime from './CigAnime';
-import CigStatic from './CigStatic';
 
 class CigLogo extends Component {
   constructor() {
@@ -17,11 +16,8 @@ class CigLogo extends Component {
 
   render() {
     return (
-      <div className="fixed ml2 pointer z-3" onMouseEnter={this.onMouseEnter}>
-        {this.state.hover
-          ? <CigAnime />
-          : <CigStatic />
-        }
+      <div className="fixed ml2 pointer z-3">
+        <CigAnime />
       </div>
     );
   }
