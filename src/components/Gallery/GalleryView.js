@@ -1,9 +1,11 @@
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
+import { Link } from 'react-router';
 
 import { updateColor, getCigs } from '../../actions';
 import CigGrid from './CigGrid';
 import CigLoader from '../shared/CigLoader';
+import CigLogo from '../shared/CigLogo';
 
 
 class GalleryView extends Component {
@@ -40,15 +42,22 @@ class GalleryView extends Component {
   render() {
     const { cigs } = this.props;
     return (
-      <div onScroll={this.updateDimensions} className="mw9 center ph3-ns mt6">
-        <div className="cf ph2-ns">
-          {this.props.cigs && <CigGrid items={cigs} />}
+      <div>
+        <Link to="/about">
+          <div className="logo-header">
+            <CigLogo />
+          </div>
+        </Link>
+        <div onScroll={this.updateDimensions} className="mw9 center ph3-ns mt6">
+          <div className="cf ph2-ns">
+            {this.props.cigs && <CigGrid items={cigs} />}
+          </div>
+          {this.props.loading &&
+            <div className="center mt6 w-100 tc mb6">
+              <CigLoader />
+              <div className="loading-message ml4">loading ...</div>
+            </div>}
         </div>
-        {this.props.loading &&
-          <div className="center mt6 w-100 tc mb6">
-            <CigLoader />
-            <div className="loading-message ml4">loading ...</div>
-          </div>}
       </div>
     );
   }
