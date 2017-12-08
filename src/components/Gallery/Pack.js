@@ -24,7 +24,7 @@ class GridContents extends React.Component {
     const { item } = this.props;
     return (
       <div className={this.state.visible ? 'solid' : 'clear'} id={item.id} key={item.id} role="button">
-        <CigCard pointer={item.lat}>
+        <CigCard pointer={item.lat} mapView={this.state.map}>
           {this.state.map
           ?
             <div>
@@ -41,9 +41,11 @@ class GridContents extends React.Component {
                   this.setState({ map: !this.state.map, hasmap: true });
                 }
               }}>
-              <div className="map-icon-container bg-black pa2">
-                <MapIcon />
-              </div>
+              {item.lat !== 0 &&
+                <div className="map-icon-container bg-black pa2">
+                  <MapIcon />
+                </div>
+              }
               <img src={this.props.item.img.medium} className="image-size bw4 ba" alt="cig" />
             </div>
         }
