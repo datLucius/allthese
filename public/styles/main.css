@@ -133,3 +133,7 @@
 .logo-header {
   padding-top: 5px;
 }
+
+.minheight {
+  min-height: 600px;
+}

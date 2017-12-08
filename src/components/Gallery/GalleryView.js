@@ -48,7 +48,7 @@ class GalleryView extends Component {
             <CigLogo />
           </div>
         </Link>
-        <div onScroll={this.updateDimensions} className="mw9 center ph3-ns mt6">
+        <div onScroll={this.updateDimensions} className="mw9 center ph3-ns mt6 minheight">
           <div className="cf ph2-ns">
             {this.props.cigs && <CigGrid items={cigs} />}
           </div>

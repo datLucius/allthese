@@ -28,7 +28,7 @@ class GridContents extends React.Component {
           {this.state.map
           ?
             <div>
-              <div className="bg-black tc justify-center white pa4 absolute fl z-2"
+              <div className="bg-red tc justify-center white pa4 absolute fl z-2"
                 role="button"
                 onClick={() => { this.setState({ map: !this.state.map }); }}>X</div>
               <CigMap item={item} />
@@ -42,7 +42,7 @@ class GridContents extends React.Component {
                 }
               }}>
               {item.lat !== 0 &&
-                <div className="map-icon-container bg-black pa2">
+                <div className="map-icon-container bg-red pa2">
                   <MapIcon />
                 </div>
               }
