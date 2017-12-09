@@ -1,9 +1,6 @@
 import { connect } from 'react-redux';
 import React from 'react';
-import { Link } from 'react-router';
 import { updateColor } from '../../actions';
-
-import CigLogo from '../shared/CigLogo';
 
 
 const AboutView = () => (

@@ -1,11 +1,9 @@
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
-import { Link } from 'react-router';
 
 import { updateColor, getCigs } from '../../actions';
 import CigGrid from './CigGrid';
 import CigLoader from '../shared/CigLoader';
-import CigLogo from '../shared/CigLogo';
 
 
 class GalleryView extends Component {
