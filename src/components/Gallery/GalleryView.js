@@ -42,22 +42,18 @@ class GalleryView extends Component {
   render() {
     const { cigs } = this.props;
     return (
-      <div>
+      <div onScroll={this.updateDimensions} className="mw9 center ph3-ns mt6 minheight">
         <Link to="/about">
-          <div className="logo-header">
-            <CigLogo />
-          </div>
+          <CigLogo />
         </Link>
-        <div onScroll={this.updateDimensions} className="mw9 center ph3-ns mt6 minheight">
-          <div className="cf ph2-ns">
-            {this.props.cigs && <CigGrid items={cigs} />}
-          </div>
-          {this.props.loading &&
-            <div className="center mt6 w-100 tc mb6">
-              <CigLoader />
-              <div className="loading-message ml4">loading ...</div>
-            </div>}
+        <div className="cf ph2-ns z-1">
+          {this.props.cigs && <CigGrid items={cigs} />}
         </div>
+        {this.props.loading &&
+        <div className="center mt6 w-100 tc mb6">
+          <CigLoader />
+          <div className="loading-message ml4">loading ...</div>
+        </div>}
       </div>
     );
   }

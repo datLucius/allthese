@@ -25,11 +25,9 @@ class VideoView extends Component {
     return (
       <div>
         <Link to="/about">
-          <div className="logo-header">
-            <CigLogo />
-          </div>
+          <CigLogo />
         </Link>
-        <div className="mt5 mw8 center">
+        <div className="mt5 mw8 center z-1">
           <h1 className="playfair f-subheadline lh-title pa4 tc">Hey, check out all these cigarette packs I found</h1>
           <div className="w-100 flex justify-center">
             <BlackBox>

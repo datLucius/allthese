@@ -16,7 +16,7 @@ class CigLogo extends Component {
 
   render() {
     return (
-      <div className="fixed ml2 pointer z-3">
+      <div className="logo-header ml2 pointer">
         <CigAnime />
       </div>
     );
