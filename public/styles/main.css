@@ -141,3 +141,13 @@
 .minheight {
   min-height: 600px;
 }
+
+.hover-red {
+  background-color: black;
+  color: white;
+}
+
+.hover-red:hover {
+  background-color: red;
+  color: white;
+}
