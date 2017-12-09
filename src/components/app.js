@@ -1,9 +1,11 @@
 import React from 'react';
 import Header from './shared/Header';
 import Footer from './shared/Footer';
+import CigLogo from './shared/CigLogo';
 
 const App = props => (
   <div>
+    <CigLogo />
     <Header />
     {props.children}
     <Footer />

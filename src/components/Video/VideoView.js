@@ -1,12 +1,10 @@
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
 import moment from 'moment';
-import { Link } from 'react-router';
 
 import { updateColor } from '../../actions';
 
 import BlackBox from '../shared/BlackBox';
-import CigLogo from '../shared/CigLogo';
 
 class VideoView extends Component {
   constructor(props) {
@@ -24,9 +22,6 @@ class VideoView extends Component {
     const { color } = this.props;
     return (
       <div>
-        <Link to="/about">
-          <CigLogo />
-        </Link>
         <div className="mt5 mw8 center z-1">
           <h1 className="playfair f-subheadline lh-title pa4 tc">Hey, check out all these cigarette packs I found</h1>
           <div className="w-100 flex justify-center">

@@ -8,9 +8,6 @@ import CigLogo from '../shared/CigLogo';
 
 const AboutView = () => (
   <div>
-    <Link to="/about">
-      <CigLogo />
-    </Link>
     <div className="mt5 pa4 mw6 center z-1">
       <div className="f3 playfair mb2">Next time you walk down the street,</div>
       <div className="f3 playfair mb4">keep an eye out for abandoned cigarette packs.</div>

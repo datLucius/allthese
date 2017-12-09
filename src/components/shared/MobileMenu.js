@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import CigMenuSVG from './CigMenuSVG';
 import pages from './pages';
 import MobileMenuTitle from './MobileMenuTitle';
-import CigLogo from './CigLogo';
 
 class MobileMenu extends Component {
   constructor() {
@@ -29,7 +28,7 @@ class MobileMenu extends Component {
         <div className="cb w-100 bg-white ba bw4 pa2 label-menu" onClick={this.onClick} role="button">
           {pages.map(({ name, description, to }) =>
             (
-              <MobileMenuTitle name={name} description={description} to={to} color={this.props.color} />
+              <MobileMenuTitle key={name} name={name} description={description} to={to} color={this.props.color} />
             )
           )}
         </div>

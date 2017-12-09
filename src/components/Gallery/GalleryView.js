@@ -43,9 +43,6 @@ class GalleryView extends Component {
     const { cigs } = this.props;
     return (
       <div onScroll={this.updateDimensions} className="mw9 center ph3-ns mt6 minheight">
-        <Link to="/about">
-          <CigLogo />
-        </Link>
         <div className="cf ph2-ns z-1">
           {this.props.cigs && <CigGrid items={cigs} />}
         </div>

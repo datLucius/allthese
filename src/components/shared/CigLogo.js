@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router';
+
 import CigAnime from './CigAnime';
 
 class CigLogo extends Component {
@@ -16,9 +18,11 @@ class CigLogo extends Component {
 
   render() {
     return (
-      <div className="logo-header ml2 pointer">
-        <CigAnime />
-      </div>
+      <Link to="/about">
+        <div className="logo-header ml2 pointer">
+          <CigAnime />
+        </div>
+      </Link>
     );
   }
 }
