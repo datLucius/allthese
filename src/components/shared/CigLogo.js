@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Link } from 'react-router';
 
 import CigAnime from './CigAnime';
-import CigStatic from './CigStatic';
 
 class CigLogo extends Component {
   constructor(props) {
@@ -24,7 +23,7 @@ class CigLogo extends Component {
 
   render() {
     return (
-      <Link to="/about" onMouseEnter={this.onMouseEnter} onMouseLeave={this.onMouseLeave}>
+      <Link to="/about">
         <div className="logo-header ml2 pointer">
           <CigAnime />
         </div>
