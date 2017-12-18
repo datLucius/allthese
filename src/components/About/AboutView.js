@@ -5,7 +5,7 @@ import { updateColor } from '../../actions';
 
 const AboutView = () => (
   <div>
-    <div className="mt5 pa4 mw6 center z-1">
+    <div className="mt5 pa4 mw6 center z-1 mb6">
       <div className="f3 playfair mb2">Next time you walk down the street,</div>
       <div className="f3 playfair mb4">keep an eye out for abandoned cigarette packs.</div>
       <div className="f3 playfair mb4">They&rsquo;re everywhere.</div>

@@ -3,7 +3,8 @@ import React, { Component } from 'react';
 
 import { updateColor, getCigs } from '../../actions';
 import CigGrid from './CigGrid';
-import CigLoader from '../shared/CigLoader';
+import CigLoader from '../shared/CigLoaderWhite';
+import CigLoad from '../shared/CigLoad';
 
 
 class GalleryView extends Component {
@@ -23,16 +24,22 @@ class GalleryView extends Component {
   render() {
     const { cigs } = this.props;
     return (
-      <div onScroll={this.updateDimensions} className="mw9 center ph3-ns mt6 minheight tc">
+      <div className="mw9 center ph3-ns mt6 minheight tc mb6">
         <div className="cf ph2-ns z-1">
           {this.props.cigs && <CigGrid items={cigs} />}
         </div>
-        {this.props.loading && <div className="center mt6 w-100 tc mb6">
-          <CigLoader />
-          <div className="loading-message ml4">loading ...</div>
-          </div>
-        }
-        {!this.props.loading && <div className="dib white tc pa4 pointer f3 hover-red" onClick={this.getMoreCigs} role="button">LOAD MORE</div>}
+        <div className="mt4">
+          {this.props.loading && <div className="center w-100 tc">
+            <CigLoader />
+            <div className="loading-message ml4">loading ...</div>
+            </div>
+          }
+          {!this.props.loading &&
+            <div onClick={this.getMoreCigs} role="button" className="pointer">
+              <CigLoad />
+              <div className="loading-message ml4">load more?</div>
+            </div>}
+        </div>
       </div>
     );
   }

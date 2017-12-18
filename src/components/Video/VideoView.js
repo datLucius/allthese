@@ -22,7 +22,7 @@ class VideoView extends Component {
     const { color } = this.props;
     return (
       <div>
-        <div className="mt5 mw8 center z-1">
+        <div className="mt5 mw8 center z-1 mb6">
           <h1 className="playfair f-subheadline lh-title pa4 tc">Hey, check out all these cigarette packs I found</h1>
           <div className="w-100 flex justify-center">
             <BlackBox>
