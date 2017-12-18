@@ -6,7 +6,6 @@ import CigLogo from './shared/CigLogo';
 const App = props => (
   <div>
     <Header />
-    <CigLogo />
     {props.children}
     <Footer />
   </div>

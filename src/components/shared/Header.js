@@ -4,7 +4,7 @@ import DesktopMenu from './DesktopMenu';
 import MobileMenu from './MobileMenu';
 
 const Header = ({ color }) => (
-  <div className="w-100 fixed top-0 bg-white z-2 header-bar">
+  <div className="w-100 fixed top-0 z-2 header-bar">
     <div className="fixed right-0 desktop-header">
       <div className="dn db-ns">
         <div className="justify-between items-center flex pa2">
