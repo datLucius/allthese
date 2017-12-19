@@ -24,23 +24,22 @@ class GalleryView extends Component {
   render() {
     const { cigs } = this.props;
     return (
-      <div className="mw9 center ph3-ns mt6 minheight tc mb6">
+      <div className="mw9 center ph3-ns mt2 minheight tc mb6">
         <div className="cf ph2-ns z-1">
           {this.props.cigs && <CigGrid items={cigs} />}
         </div>
-        <div className="mt4">
+        <div className="mt6">
           {this.props.loading && <div className="center w-100 tc">
             <CigLoader />
             <div className="loading-message ml4">loading ...</div>
             </div>
-          }
+          }</div>
           {!this.props.loading &&
             <div onClick={this.getMoreCigs} role="button" className="pointer">
               <CigLoad />
               <div className="loading-message ml4">load more?</div>
             </div>}
         </div>
-      </div>
     );
   }
 }

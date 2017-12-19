@@ -1,12 +1,12 @@
 const pages = [
   {
-    name: 'ALL AT ONCE',
-    description: 'video',
+    name: 'moving',
+    description: 'the video',
     path: '/'
   },
   {
-    name: 'ONE AT A TIME',
-    description: 'photos',
+    name: 'still',
+    description: 'the photos',
     to: '/gallery'
   }
 ];
