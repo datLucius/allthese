@@ -24,7 +24,7 @@ class DesktopMenu extends Component {
     return (
       <Link className="desktopmenu-item db mb2 mr4 pointer tc title-w link bg-white" style={{ color }} onMouseEnter={this.onMouseEnter} onMouseOut={this.onMouseOut} to={to || '/'}>
         {this.state.hover
-          ? <div className="desktopmenu-description ba bw2 pointer">{description}</div>
+          ? <div className="desktopmenu-description ba bw2 pointer pa1">{description}</div>
           : <div className="desktopmenu-name ba bw2 pointer">{name}</div>
         }
       </Link>

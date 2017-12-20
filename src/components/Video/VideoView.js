@@ -5,6 +5,8 @@ import moment from 'moment';
 import { updateColor } from '../../actions';
 
 import BlackBox from '../shared/BlackBox';
+import LocationEl from './Location';
+import locations from '../shared/locations';
 
 class VideoView extends Component {
   constructor(props) {
@@ -22,7 +24,7 @@ class VideoView extends Component {
     const { color } = this.props;
     return (
       <div>
-        <div className="mt5 mw8 center z-1 mb6">
+        <div className="mt5 mw8 center z-1 mb2">
           <h1 className="playfair f-subheadline lh-title pa4 tc">Hey, check out all these cigarette packs I found</h1>
           <div className="w-100 flex justify-center">
             <BlackBox>
@@ -38,9 +40,10 @@ class VideoView extends Component {
           <div className="f3 tc w-100">
             <div className="lh-copy" style={{ color }} />
           </div>
-          <div className="f4 mw6 center pa4 bt bw1">
-            <div className="lh-copy" style={{ color }}>@ <span className="black" >US, Italy, Croatia, Czech Republic, Netherlands, Germany, Ireland, Scotland, England, Iceland, France, Spain</span></div>
-          </div>
+        </div>
+        <div className="bb w-100 b--moon-gray overflow-x-scroll justify-between flex items-end bw2 pt4 mb6 bg-light-gray">
+          <div className="lh-title w-100 tc white f1 absolute self-start">@</div>
+          {locations.map(location => <LocationEl location={location} />)}
         </div>
       </div>
     );
