@@ -33,7 +33,7 @@ class VideoView extends Component {
           </div>
           <div className="w-100 mt2 pa4 flex justify-center">
             <div className="f3">
-              <div className="lh-copy" style={{ color }}>1289<span className="black"> packs</span></div>
+              <div className="lh-copy" style={{ color }}>1333<span className="black"> packs</span></div>
               <div className="lh-copy" style={{ color }}>{this.state.days} <span className="black" >days</span></div>
             </div>
           </div>
