@@ -41,7 +41,7 @@ class VideoView extends Component {
             <div className="lh-copy" style={{ color }} />
           </div>
         </div>
-        <div className="bb w-100 b--moon-gray overflow-x-scroll justify-between flex items-end bw2 pt4 mb6 bg-light-gray">
+        <div className="bb w-100 b--moon-gray overflow-x-scroll justify-between flex items-end bw2 pt4 mb6 smoke-chamber">
           <div className="lh-title w-100 tc white f1 absolute self-start">@</div>
           {locations.map(location => <LocationEl location={location} />)}
         </div>
